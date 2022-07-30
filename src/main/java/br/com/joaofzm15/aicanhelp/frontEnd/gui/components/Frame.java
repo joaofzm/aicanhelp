@@ -25,9 +25,9 @@ public class Frame {
 		frame.setUndecorated(Config.borderless);
 		frame.setVisible(true);
 		frame.setLocationRelativeTo(null);
-		ImageIcon windowIcon = new ImageIcon(getClass().getClassLoader().getResource("Assets/windowIcon.jpg"));
+		ImageIcon windowIcon = new ImageIcon(getClass().getClassLoader().getResource("Assets/windowIcon.png"));
 		frame.setIconImage(windowIcon.getImage());
-		frame.setTitle("Yu-Gi-Oh! - Advanced Stats");
+		frame.setTitle("Yu-Gi-Oh! - Advanced Sstats");
 		frame.setResizable(false);
 		frame.pack();
 		frame.setVisible(true);
@@ -56,7 +56,7 @@ public class Frame {
 		frame.setUndecorated(Config.borderless);
 		frame.setVisible(true);
 		frame.setLocationRelativeTo(null);
-		ImageIcon windowIcon = new ImageIcon(getClass().getClassLoader().getResource("Assets/windowIcon.jpg"));
+		ImageIcon windowIcon = new ImageIcon(getClass().getClassLoader().getResource("Assets/windowIcon.png"));
 		frame.setIconImage(windowIcon.getImage());
 		frame.setTitle("Yu-Gi-Oh! - Advanced Stats");
 		frame.setResizable(false);

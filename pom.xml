@@ -10,9 +10,9 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>br.com.joaofzm15</groupId>
-	<artifactId>yugioh-stats</artifactId>
+	<artifactId>ai-can-help</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>yugioh-stats</name>
+	<name>ai-can-help</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>11</java.version>
