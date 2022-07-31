@@ -63,15 +63,11 @@ public class MenuPanel extends Page implements ActionListener {
 			getFrame().switchPage(initialPanel);
 		}
 		
-//		if (e.getSource() == viewDataButton.getJComponent()) {
-//			ViewDataPanel initialPanel = new ViewDataPanel(frame
-//					,FrontEndInMemoryData.getAllDuelsFromUser(),
-//					"All decks  vs  All decks");
-//			frame.getContentPane().removeAll();
-//			frame.getContentPane().add(initialPanel.getPanel().getJComponent());
-//			frame.revalidate();
-//			initialPanel.getPanel().getJComponent().repaint();
-//		}
+		if (e.getSource() == viewDataButton.getJComponent()) {
+			ViewDataPanel initialPanel = new ViewDataPanel(FrontEndInMemoryData.getAllDuelsFromUser(),
+					"All decks  vs  All decks");
+			getFrame().switchPage(initialPanel);
+		}
 		
 		if (e.getSource() == logOutButton.getJComponent()) {
 			FrontEndInMemoryData.logOut();

@@ -39,34 +39,27 @@ public class ViewDataPanel extends Page implements ActionListener {
 	
 	private TextButton returnButton;
 	
-	private Label winRateLabel;
-	private Label goingFirstWinRateLabel;
-	private Label goingSecondWinRateLabel;
-	
-	private Label coinWinRateLabel;
-	private Label goingFirstFrequencyLabel;
-
-	private JFrame frame;
-	
 	public ViewDataPanel(List<Duel> parameterList, String title) {
-		super("Backgrounds/titlebg.png");
+		super("Backgrounds/cleanbg.png");
 
 		
 		List<Duel> listFilteredOnlySelectedSeason = DuelListFilter.filterOnlyFromSelectedSeason(parameterList);
 
-		Label disclaimer = new Label(340, 10, 1110, 33,
-				"*Duels from before March 10th 2022 do not contain info on coin tosses and who went first! ", 30, 200, 200, 255);
-		panel.add(disclaimer);
 		
-		Label disclaimer2 = new Label(351, 50, 865, 33,
-				"*Duels from before Season 4 do not contain info on the amount of turns! ", 30, 200, 200, 255);
-		panel.add(disclaimer2);
+		getPanel().add(new Label(340, 10, 1110, 33,
+				"*Duels from before March 10th 2022 do not contain info on coin tosses and who went first!",
+				30, 200, 200, 255, false));
 
+		getPanel().add(new Label(340, 50, 1110, 33,
+				"*Duels from before Season 4 do not contain info on the amount of turns! ",
+				30, 200, 200, 255, false));
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		int yAxis = 780;
-		Label bestWinRates = new Label(530, 720, 550, 100, "-Best Matchups-", 40, 200, 200, 255);
-		panel.add(bestWinRates);
+		
+		getPanel().add(new Label(530, 720, 550, 100,
+				"-Best Matchups-",
+				40, 200, 200, 255, false));
 		
 		LinkedHashMap<OppDeck,Double> bestMatchupsMap = DataMiner.sortLinkedHashMapByBestWinRate(
 				DataMiner.getLinkedHashMapOfMatchupsAndWinrates(listFilteredOnlySelectedSeason));
@@ -76,15 +69,18 @@ public class ViewDataPanel extends Page implements ActionListener {
 				break;
 			}
 			
-			Label worstWr = new Label(530, yAxis, 550, 100,
-					keys.get(i).toString()+" "+bestMatchupsMap.get(keys.get(i))+"%", 40, 200, 200, 255);
-			panel.add(worstWr);
+			getPanel().add(new Label(530, yAxis, 550, 100,
+					keys.get(i).toString()+" "+bestMatchupsMap.get(keys.get(i))+"%",
+					40, 200, 200, 255, false));
+			
 			yAxis+= 60;
 		}
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		yAxis = 780;
-		Label worseWinRates = new Label(1080, 720, 550, 100, "-Worse Matchups-", 40, 200, 200, 255);
-		panel.add(worseWinRates);
+		
+		getPanel().add(new Label(1080, 720, 550, 100,
+				"-Worse Matchups-",
+				40, 200, 200, 255, false));
 		
 		LinkedHashMap<OppDeck,Double> worseMatchupsMap = DataMiner.sortLinkedHashMapByWorseWinRate(
 				DataMiner.getLinkedHashMapOfMatchupsAndWinrates(listFilteredOnlySelectedSeason));
@@ -94,16 +90,15 @@ public class ViewDataPanel extends Page implements ActionListener {
 				break;
 			}
 			
-			Label worstWr = new Label(1080, yAxis, 590, 100,
-					keys.get(i).toString()+" "+worseMatchupsMap.get(keys.get(i))+"%", 40, 200, 200, 255);
-			panel.add(worstWr);
+			getPanel().add(new Label(1080, yAxis, 590, 100,
+					keys.get(i).toString()+" "+worseMatchupsMap.get(keys.get(i))+"%",
+					40, 200, 200, 255, false));
+			
 			yAxis+= 60;
 		}
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
-		
-		seasonComboBox = new ComboBox(25, 25, 300, 100, "x", 255, 255, 255, 50, 50, 120, 28);
+		getPanel().add(seasonComboBox = new ComboBox(25, 25, 300, 100, "x", 255, 255, 255, 50, 50, 120, 28));
 		List<String> seasonComboBoxListOfItems = new ArrayList<>();
 		seasonComboBoxListOfItems.add("All Seasons");
 		for (int i=1; i<11; i++) {
@@ -111,16 +106,13 @@ public class ViewDataPanel extends Page implements ActionListener {
 		}
 		seasonComboBox.getJComponent().setModel(new DefaultComboBoxModel(seasonComboBoxListOfItems.toArray()));
 		seasonComboBox.getJComponent().setSelectedIndex(FrontEndInMemoryData.filteredSeason);
-		panel.add(seasonComboBox);
 		
-		filterSeasonButton = new Button(75, 138, 180, 56, "FILTER",150,150,255,62);
-		filterSeasonButton.getJComponent().addActionListener(this);
-		panel.add(filterSeasonButton);
 		
-		titleLabel = new Label(100, 120, 1920, 130, title, 70, 200, 200, 255);
-		panel.add(titleLabel);
-		
-		deckComboBox = new ComboBox(25, 830, 300, 100, "x", 255, 255, 255, 50, 120, 50, 28);
+		getPanel().add(filterSeasonButton = new TextButton(75, 138, 180, 56, "FILTER", 62, 150, 150, 200, 100, 100, 255, false), this);
+
+		getPanel().add(new Label(100, 120, 1920, 130, title, 72, 200, 200, 255, false));
+
+		getPanel().add(deckComboBox = new ComboBox(25, 830, 300, 100, "x", 255, 255, 255, 50, 120, 50, 28));
 		List<Deck> decksList = FrontEndInMemoryData.currentlyLoggedPlayer.getDecks();
 		List<Deck> copyOfDecksList = new ArrayList<>();
 		for (Deck deck : decksList) {
@@ -128,21 +120,17 @@ public class ViewDataPanel extends Page implements ActionListener {
 		}
 		copyOfDecksList.add(0,new Deck(null, "ALL DECKS", null));
 		deckComboBox.getJComponent().setModel(new DefaultComboBoxModel(copyOfDecksList.toArray()));
-		panel.add(deckComboBox);
 		
-		viewDeckStatsButton = new Button(360, 915, 190, 56, "FILTER",50,200,50,62);
-		viewDeckStatsButton.getJComponent().addActionListener(this);
-		panel.add(viewDeckStatsButton);
 		
-		oppDeckComboBox = new ComboBox(25, 960, 300, 100, "x", 255, 255, 255, 120, 50, 50, 28);
+		getPanel().add(viewDeckStatsButton = new TextButton(360, 915, 190, 56, "FILTER", 62, 150, 150, 200, 100, 100, 255, false), this);
+
+		getPanel().add(oppDeckComboBox = new ComboBox(25, 960, 300, 100, "x", 255, 255, 255, 120, 50, 50, 28));
 		OppDeck[] items = OppDeck.values();
 		oppDeckComboBox.getJComponent().setModel(new DefaultComboBoxModel(items));
-		panel.add(oppDeckComboBox);
 		
-		returnButton = new Button(1680, 980, 200, 56, "RETURN",255,20,20,62);
-		returnButton.getJComponent().addActionListener(this);
-		panel.add(returnButton);
 		
+		getPanel().add(returnButton = new TextButton(1680, 980, 200, 56, "RETURN", 62, 150, 150, 200, 100, 100, 255, false), this);
+
 //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 	    DecimalFormat df = new DecimalFormat("0.000");
 		//===============================================
@@ -155,13 +143,13 @@ public class ViewDataPanel extends Page implements ActionListener {
 		int totalTurnsFromDuelsWithTurnCount = DataMiner.getTotalTurnsFromDuelsWithTurnCount(listFilteredOnlySelectedSeason);
 		int totalDuelsWithTurnCount = DataMiner.getAmountOfDuelsWithTurnCount(listFilteredOnlySelectedSeason);
 		double avgTurns = Calculator.calculateAverage(totalTurnsFromDuelsWithTurnCount, totalDuelsWithTurnCount);
-		winRateLabel = new Label(0, labelY, 1920, 50, "Total  >>>  "
+		
+		getPanel().add(new Label(0, labelY, 1920, 50, "Total >>> "
 				+ "Wins: "+totalWins+"  "
 				+ "|  Losses: "+totalLosses+"  "
 				+ "|  ( "+totalDuels+" )  -  "+df.format(winrate)+"%  "
 				+ "|  Avg. Turns: "+df.format(avgTurns)
-				, 50, 200, 200, 255);
-		panel.add(winRateLabel);
+				, 50, 255, 255, 200, false));
 		//===============================================
 		labelY+=110;
 		//===============================================
@@ -174,14 +162,12 @@ public class ViewDataPanel extends Page implements ActionListener {
 		int totalDuelsWithTurnCountFirst = DataMiner.getAmountOfDuelsWithTurnCount(duelsGoingFirst);
 		double avgTurnsFirst = Calculator.calculateAverage(totalTurnsFromDuelsWithTurnCountFirst, totalDuelsWithTurnCountFirst);
 		
-		goingFirstWinRateLabel = new Label(0, labelY, 1920, 50, "Going Fist  >>>  "
+		getPanel().add(new Label(0, labelY, 1920, 50, "Going Fist  >>>  "
 				+ "Wins: "+totalFirstWins+"  "
 				+ "|  Losses: "+totalFirstLosses+"  "
 				+ "|  ( "+totalFirstDuels+" )  -  "+df.format(firstWinrate)+"%  "
 				+ "|  Avg. Turns: "+df.format(avgTurnsFirst)
-
-				, 50, 200, 200, 255);
-		panel.add(goingFirstWinRateLabel);
+				, 50, 255, 255, 200, false));
 		//===============================================
 		labelY+=75;
 		//===============================================
@@ -193,14 +179,12 @@ public class ViewDataPanel extends Page implements ActionListener {
 		int totalTurnsFromDuelsWithTurnCountSecond = DataMiner.getTotalTurnsFromDuelsWithTurnCount(duelsGoingSecond);
 		int totalDuelsWithTurnCountSecond = DataMiner.getAmountOfDuelsWithTurnCount(duelsGoingSecond);
 		double avgTurnsSecond = Calculator.calculateAverage(totalTurnsFromDuelsWithTurnCountSecond, totalDuelsWithTurnCountSecond);
-		goingSecondWinRateLabel = new Label(0, labelY, 1920, 50, "Going Second  >>>  "
+		getPanel().add(new Label(0, labelY, 1920, 50, "Going Second  >>>  "
 				+ "Wins: "+totalSecondWins+"  "
 				+ "|  Losses: "+totalSecondLosses+"  "
 				+ "|  ( "+totalSecondDuels+" )  -  "+df.format(secondWinrate)+"%  "
 				+ "|  Avg. Turns: "+df.format(avgTurnsSecond)
-
-				, 50, 200, 200, 255);
-		panel.add(goingSecondWinRateLabel);
+				, 50, 255, 255, 200, false));
 		//===============================================
 		labelY+=110;
 		//===============================================
@@ -208,12 +192,13 @@ public class ViewDataPanel extends Page implements ActionListener {
 		int totalCoinLosses = DataMiner.getTotalCoinLosses(listFilteredOnlySelectedSeason);
 		int totalCoinsThrow = totalCoinWins+totalCoinLosses;
 		double coinWinrate = DataMiner.getTotalCoinWinRate(listFilteredOnlySelectedSeason);
-		coinWinRateLabel = new Label(0, labelY, 1920, 50, "Coin toss win rate  >>>  "
+		
+		
+		getPanel().add(new Label(0, labelY, 1920, 50, "Coin toss win rate  >>>  "
 				+ "Wins: "+totalCoinWins+"  "
 				+ "|  Losses: "+totalCoinLosses+"  "
 				+ "|  ( "+totalCoinsThrow+" )  -  "+df.format(coinWinrate)+"%"
-				, 50, 200, 200, 255);
-		panel.add(coinWinRateLabel);
+				, 50, 255, 255, 200, false));
 		//===============================================
 		labelY+=75;
 		//===============================================
@@ -221,12 +206,12 @@ public class ViewDataPanel extends Page implements ActionListener {
 		int totalDuelsGoingSecond = DataMiner.getTotalDuelsGoingSecond(listFilteredOnlySelectedSeason);
 		int totalDuelsAmount = totalDuelsGoingFirst+totalDuelsGoingSecond;
 		double goingFirstFrequency = DataMiner.getTotalGoingFirstFrequencyPercentage(listFilteredOnlySelectedSeason);
-		goingFirstFrequencyLabel = new Label(0, labelY, 1920, 50, "Play first frequency  >>>  "
+		
+		getPanel().add(new Label(0, labelY, 1920, 50, "Play first frequency  >>>  "
 				+ "First: "+totalDuelsGoingFirst+"  "
 				+ "|  Second: "+totalDuelsGoingSecond+"  "
 				+ "|  ( "+totalDuelsAmount+" )  -  "+df.format(goingFirstFrequency)+"%"
-				, 50, 200, 200, 255);
-		panel.add(goingFirstFrequencyLabel);
+				, 50, 255, 255, 200, false));
 //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 		
 		addBackground();
@@ -266,10 +251,7 @@ public class ViewDataPanel extends Page implements ActionListener {
 			
 			ViewDataPanel initialPanel = new ViewDataPanel(FrontEndInMemoryData.getAllDuelsFromUser(),
 					"All decks  vs  All decks");
-			frame.getContentPane().removeAll();
-			frame.getContentPane().add(initialPanel.getPanel().getJComponent());
-			frame.revalidate();
-			initialPanel.getPanel().getJComponent().repaint();
+			getFrame().switchPage(initialPanel);
 		}
 		
 		if (e.getSource() == viewDeckStatsButton.getJComponent()) {
