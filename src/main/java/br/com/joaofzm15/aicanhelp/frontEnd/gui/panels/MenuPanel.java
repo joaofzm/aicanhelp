@@ -1,5 +1,6 @@
 package br.com.joaofzm15.aicanhelp.frontEnd.gui.panels;
 
+import java.awt.Button;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -7,72 +8,43 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
-import br.com.joaofzm15.aicanhelp.frontEnd.gui.components.Button;
-import br.com.joaofzm15.aicanhelp.frontEnd.gui.components.Label;
-import br.com.joaofzm15.aicanhelp.frontEnd.gui.components.Panel;
-import br.com.joaofzm15.aicanhelp.frontEnd.gui.config.Config;
+import astral.components.visualComponents.Label;
+import astral.components.visualComponents.Page;
+import astral.components.visualComponents.Panel;
+import astral.components.visualComponents.TextButton;
+import astral.components.visualComponents.TextField;
 import br.com.joaofzm15.aicanhelp.frontEnd.http.FrontEndInMemoryData;
 
-public class MenuPanel implements ActionListener {
+public class MenuPanel extends Page implements ActionListener {
 
-	private Panel panel;
-	public Panel getPanel() {
-		return panel;
-	}
-	
-	private JLabel bg;
-	
-	private Button addDuelButton;
-	private Button addDeckButton;
-	private Button viewDataButton;
+	private TextButton addDuelButton;
+	private TextButton addDeckButton;
+	private TextButton viewDataButton;
 	
 	private Label welcomeLabel;
 	
-	private Button logOutButton;
-	private Button exitButton;
+	private TextButton logOutButton;
+	private TextButton exitButton;
 
 	private JFrame frame;
 	
-	public MenuPanel(JFrame frame) {
-		
-		this.frame=frame;
+	public MenuPanel() {
+		super("Backgrounds/titlebg.png");
 
-		panel = new Panel(1920,1080);
+		getPanel().add(welcomeLabel = new Label(0, 0, 500, 100, "Welcome, "+FrontEndInMemoryData.currentlyLoggedPlayer.getName()+"!", 42, 255, 255, 255,false));
 		
-		welcomeLabel = new Label(0, 0, 500, 100, "Welcome, "+FrontEndInMemoryData.currentlyLoggedPlayer.getName()+"!", 42, 255, 255, 255);
-		panel.add(welcomeLabel);
+		getPanel().add(logOutButton = new TextButton(160, 80, 140, 56, "LOG OUT",40,180,50,50, 255, 50, 50, false),this);
 		
-		logOutButton = new Button(160, 80, 200, 56, "LOG OUT",255,80,80,62);
-		logOutButton.getJComponent().addActionListener(this);
-		panel.add(logOutButton);
+		getPanel().add(addDuelButton = new TextButton(844, 450, 232, 56, "ADD DUEL",62,200,255,62,40, 40, 220, false),this);
 		
-		
-		addDuelButton = new Button(844, 450, 232, 56, "ADD DUEL",255,255,255,62);
-		addDuelButton.getJComponent().addActionListener(this);
-		panel.add(addDuelButton);
-		
-		addDeckButton = new Button(839, 550, 242, 56, "ADD DECK",255,255,255,62);
-		addDeckButton.getJComponent().addActionListener(this);
-		panel.add(addDeckButton);
+		getPanel().add(addDeckButton = new TextButton(839, 550, 242, 56, "ADD DECK",62,200,255,62, 40, 40, 220, false),this);
 
-		viewDataButton = new Button(828, 650, 264, 56, "VIEW DATA",255,255,255,62);
-		viewDataButton.getJComponent().addActionListener(this);
-		panel.add(viewDataButton);
-		
-		exitButton = new Button(908, 950, 104, 56, "EXIT",255,20,20,62);
-		exitButton.getJComponent().addActionListener(this);
-		panel.add(exitButton);
-		
-		bg = new JLabel();
-		
-		ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("Backgrounds/menubg1280x720.png"));
-		bg.setSize(1920,1080);
-		if (Config.res==2) {
-			icon = new ImageIcon(getClass().getClassLoader().getResource("Backgrounds/menubg1280x720.png"));
-			bg.setSize(1280,720);
-		}
-		bg.setIcon(icon);
-		panel.getJComponent().add(bg);
+		getPanel().add(viewDataButton = new TextButton(828, 650, 264, 56, "VIEW DATA",62,200,255,62, 40, 40, 220, false),this);
+
+		getPanel().add(exitButton = new TextButton(950, 103, 62, "EXIT", 62, 200, 50, 50, 255, 50, 50, false), this);
+
+		addBackground();
+
 
 	}
 
@@ -82,38 +54,29 @@ public class MenuPanel implements ActionListener {
 //		new Thread(new ClickSound()).start();
 
 		if (e.getSource() == addDuelButton.getJComponent()) {
-			AddDuelPanel initialPanel = new AddDuelPanel(frame);
-			frame.getContentPane().removeAll();
-			frame.getContentPane().add(initialPanel.getPanel().getJComponent());
-			frame.revalidate();
-			initialPanel.getPanel().getJComponent().repaint();
+			AddDuelPanel initialPanel = new AddDuelPanel();
+			getFrame().switchPage(initialPanel);
 		}
 		
 		if (e.getSource() == addDeckButton.getJComponent()) {
-			AddDecklPanel initialPanel = new AddDecklPanel(frame);
-			frame.getContentPane().removeAll();
-			frame.getContentPane().add(initialPanel.getPanel().getJComponent());
-			frame.revalidate();
-			initialPanel.getPanel().getJComponent().repaint();
+			AddDeckPanel initialPanel = new AddDeckPanel();
+			getFrame().switchPage(initialPanel);
 		}
 		
-		if (e.getSource() == viewDataButton.getJComponent()) {
-			ViewDataPanel initialPanel = new ViewDataPanel(frame
-					,FrontEndInMemoryData.getAllDuelsFromUser(),
-					"All decks  vs  All decks");
-			frame.getContentPane().removeAll();
-			frame.getContentPane().add(initialPanel.getPanel().getJComponent());
-			frame.revalidate();
-			initialPanel.getPanel().getJComponent().repaint();
-		}
+//		if (e.getSource() == viewDataButton.getJComponent()) {
+//			ViewDataPanel initialPanel = new ViewDataPanel(frame
+//					,FrontEndInMemoryData.getAllDuelsFromUser(),
+//					"All decks  vs  All decks");
+//			frame.getContentPane().removeAll();
+//			frame.getContentPane().add(initialPanel.getPanel().getJComponent());
+//			frame.revalidate();
+//			initialPanel.getPanel().getJComponent().repaint();
+//		}
 		
 		if (e.getSource() == logOutButton.getJComponent()) {
 			FrontEndInMemoryData.logOut();
-			LoginPanel initialPanel = new LoginPanel(frame);
-			frame.getContentPane().removeAll();
-			frame.getContentPane().add(initialPanel.getPanel().getJComponent());
-			frame.revalidate();
-			initialPanel.getPanel().getJComponent().repaint();
+			LoginPanel initialPanel = new LoginPanel();
+			getFrame().switchPage(initialPanel);
 		}
 
 		if (e.getSource() == exitButton.getJComponent()) {

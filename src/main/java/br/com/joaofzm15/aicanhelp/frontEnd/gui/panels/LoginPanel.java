@@ -3,74 +3,41 @@ package br.com.joaofzm15.aicanhelp.frontEnd.gui.panels;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
+import astral.components.visualComponents.Page;
+import astral.components.visualComponents.PasswordField;
+import astral.components.visualComponents.TextButton;
+import astral.components.visualComponents.TextField;
 import br.com.joaofzm15.aicanhelp.backEnd.entitites.Player;
-import br.com.joaofzm15.aicanhelp.frontEnd.gui.components.Button;
-import br.com.joaofzm15.aicanhelp.frontEnd.gui.components.Panel;
-import br.com.joaofzm15.aicanhelp.frontEnd.gui.components.PasswordField;
-import br.com.joaofzm15.aicanhelp.frontEnd.gui.components.TextField;
-import br.com.joaofzm15.aicanhelp.frontEnd.gui.config.Config;
 import br.com.joaofzm15.aicanhelp.frontEnd.http.FrontEndInMemoryData;
 
-public class LoginPanel implements ActionListener {
-
-	private Panel panel;
-
-	public Panel getPanel() {
-		return panel;
-	}
-
-	private JLabel bg;
+public class LoginPanel extends Page implements ActionListener {
 
 	private TextField usernameTextField;
 	private PasswordField passwordTextField;
 
-	private Button loginButton;
-	private Button registerButton;
-	private Button exitButton;
+	private TextButton loginButton;
+	private TextButton registerButton;
+	private TextButton exitButton;
 
 	private JFrame frame;
 
-	public LoginPanel(JFrame frame) {
+	public LoginPanel() {
+		super("Backgrounds/titlebg.png");
 
-		this.frame = frame;
+		getPanel().add(usernameTextField = new TextField(480, 300, 62, "  username", 63));
+		
+		getPanel().add(passwordTextField = new PasswordField(600, 300, 62, "  password", 63));
+		
+		getPanel().add(loginButton = new TextButton(750, 145, 62, "LOGIN", 62, 200,255,62, 40, 40, 220, false), this);
 
-		panel = new Panel(1920, 1080);
+		getPanel().add(registerButton = new TextButton(850, 230, 62, "REGISTER", 62, 50, 50, 200, 30, 30, 255, false), this);
 
-		usernameTextField = new TextField(828, 475, 264, 56, "                 username", 28);
-		usernameTextField.getJComponent().addActionListener(this);
-		panel.add(usernameTextField);
+		getPanel().add(exitButton = new TextButton(950, 103, 62, "EXIT", 62, 200, 50, 50, 255, 50, 50, false), this);
 
-		passwordTextField = new PasswordField(828, 575, 264, 56, "                  password", 28);
-		passwordTextField.getJComponent().addActionListener(this);
-		panel.add(passwordTextField);
-
-		loginButton = new Button(869, 675, 182, 56, "SIGN IN", 20, 255, 20, 62);
-		loginButton.getJComponent().addActionListener(this);
-		panel.add(loginButton);
-
-		registerButton = new Button(815, 775, 290, 56, "CREATE ACCOUNT", 20, 160, 20, 42);
-		registerButton.getJComponent().addActionListener(this);
-		panel.add(registerButton);
-
-		exitButton = new Button(908, 950, 104, 56, "EXIT", 255, 20, 20, 62);
-		exitButton.getJComponent().addActionListener(this);
-		panel.add(exitButton);
-
-		bg = new JLabel();
-
-		ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("Backgrounds/lockedmenubg1280x720.png"));
-		bg.setSize(1920, 1080);
-		if (Config.res == 2) {
-			icon = new ImageIcon(getClass().getClassLoader().getResource("Backgrounds/lockedmenubg1280x720.png"));
-			bg.setSize(1280, 720);
-		}
-		bg.setIcon(icon);
-		panel.getJComponent().add(bg);
+		addBackground();
 
 	}
 
@@ -82,11 +49,8 @@ public class LoginPanel implements ActionListener {
 
 			if (!(p==null)) {
 				if (passwordTextField.getJComponent().getText().equals(p.getPassword())) {
-					MenuPanel initialPanel = new MenuPanel(frame);
-					frame.getContentPane().removeAll();
-					frame.getContentPane().add(initialPanel.getPanel().getJComponent());
-					frame.revalidate();
-					initialPanel.getPanel().getJComponent().repaint();
+					MenuPanel initialPanel = new MenuPanel();
+					getFrame().switchPage(initialPanel);
 				} else {
 					JOptionPane.showMessageDialog(null, "Wrong password!");
 				}
@@ -96,11 +60,8 @@ public class LoginPanel implements ActionListener {
 		}
 		
 		if (e.getSource() == registerButton.getJComponent()) {
-			RegisterAccountPanel initialPanel = new RegisterAccountPanel(frame);
-			frame.getContentPane().removeAll();
-			frame.getContentPane().add(initialPanel.getPanel().getJComponent());
-			frame.revalidate();
-			initialPanel.getPanel().getJComponent().repaint();
+			RegisterAccountPanel initialPanel = new RegisterAccountPanel();
+			getFrame().switchPage(initialPanel);
 		}
 
 		if (e.getSource() == exitButton.getJComponent()) {

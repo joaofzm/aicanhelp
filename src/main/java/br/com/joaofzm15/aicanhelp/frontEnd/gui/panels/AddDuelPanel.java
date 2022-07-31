@@ -10,34 +10,23 @@ import java.util.Arrays;
 import java.util.List;
 
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
+import astral.components.visualComponents.CheckBox;
+import astral.components.visualComponents.ComboBox;
+import astral.components.visualComponents.Label;
+import astral.components.visualComponents.Page;
+import astral.components.visualComponents.TextButton;
+import astral.components.visualComponents.TextField;
 import br.com.joaofzm15.aicanhelp.backEnd.entitites.Deck;
 import br.com.joaofzm15.aicanhelp.backEnd.entitites.enums.OppDeck;
 import br.com.joaofzm15.aicanhelp.frontEnd.exceptions.BlankFieldException;
 import br.com.joaofzm15.aicanhelp.frontEnd.exceptions.FieldInputMismatchException;
-import br.com.joaofzm15.aicanhelp.frontEnd.gui.components.Button;
-import br.com.joaofzm15.aicanhelp.frontEnd.gui.components.CheckBox;
-import br.com.joaofzm15.aicanhelp.frontEnd.gui.components.ComboBox;
-import br.com.joaofzm15.aicanhelp.frontEnd.gui.components.Label;
-import br.com.joaofzm15.aicanhelp.frontEnd.gui.components.Panel;
-import br.com.joaofzm15.aicanhelp.frontEnd.gui.components.TextField;
-import br.com.joaofzm15.aicanhelp.frontEnd.gui.config.Config;
 import br.com.joaofzm15.aicanhelp.frontEnd.http.FrontEndInMemoryData;
 import br.com.joaofzm15.aicanhelp.frontEnd.http.HttpController;
 
-public class AddDuelPanel implements ActionListener {
-
-	private Panel panel;
-	public Panel getPanel() {
-		return panel;
-	}
-	
-	private JLabel bg;
-	
+public class AddDuelPanel extends Page implements ActionListener {
 	
 	private ComboBox deckComboBox;
 	
@@ -54,76 +43,51 @@ public class AddDuelPanel implements ActionListener {
 	
 	private ComboBox oppDeckComboBox;
 	
-	private Button addDuelButton;
+	private TextButton addDuelButton;
 	
-	private Button returnButton;
+	private TextButton returnButton;
 	
-	private Label title;
-
 	private JFrame frame;
 	
-	public AddDuelPanel(JFrame frame) {
-		
-		this.frame=frame;
+	public AddDuelPanel() {
+		super("Backgrounds/cleanbg.png");
 
-		panel = new Panel(1920,1080);
+
+		getPanel().add(new Label(0, 100, 1920, 200, "ADD DUEL", 210, 40, 40, 220, false));
 		
-		title = new Label(0, 170, 1920, 130, "ADD DUEL", 130, 200, 200, 255);
-		panel.add(title);
-		
-		deckComboBox = new ComboBox(355, 455, 300, 100, "x", 255, 255, 255, 50, 120, 50, 28);
+
+		getPanel().add(deckComboBox = new ComboBox(355, 455, 300, 100, "x", 255, 255, 255,50, 120, 50, 28));
 		List<Deck> decksList = FrontEndInMemoryData.currentlyLoggedPlayer.getDecks();
 		deckComboBox.getJComponent().setModel(new DefaultComboBoxModel(decksList.toArray()));
-		panel.add(deckComboBox);
 		
-		duelWBox = new CheckBox(705, 400, 100, 100, "W", 255, 255, 255, 50,255,50, 50);
+		getPanel().add(duelWBox = new CheckBox(705, 400, 100, 100, "W", 255, 255, 255, 50,255,50, 50));
 		duelWBox.getJComponent().addActionListener(this);
-		panel.add(duelWBox);
-		duelLBox = new CheckBox(705, 510, 100, 100, "L", 255, 255, 255, 255,50,50, 50);
+		getPanel().add(duelLBox = new CheckBox(705, 510, 100, 100, "L", 255, 255, 255, 255,50,50, 50));
 		duelLBox.getJComponent().addActionListener(this);
-		panel.add(duelLBox);
 		
-		
-		coinWBox = new CheckBox(855, 400, 100, 100, "W", 255, 255, 255, 200,200,50, 50);
+		getPanel().add(coinWBox = new CheckBox(855, 400, 100, 100, "W", 255, 255, 255, 200,200,50, 50));
 		coinWBox.getJComponent().addActionListener(this);
-		panel.add(coinWBox);
-		coinLBox = new CheckBox(855, 510, 100, 100, "L", 255, 255, 255, 50,50,50, 50);
+		getPanel().add(coinLBox = new CheckBox(855, 510, 100, 100, "L", 255, 255, 255, 50,50,50, 50));
 		coinLBox.getJComponent().addActionListener(this);
-		panel.add(coinLBox);
-		
-		firstBox = new CheckBox(965, 400, 100, 100, "1st", 255, 255, 255, 200,200,50, 40);
+	
+		getPanel().add(firstBox = new CheckBox(965, 400, 100, 100, "1st", 255, 255, 255, 200,200,50, 40));
 		firstBox.getJComponent().addActionListener(this);
-		panel.add(firstBox);
-		secondBox = new CheckBox(965, 510, 100, 100, "2nd", 255, 255, 255, 50,50,50, 40);
+		getPanel().add(secondBox = new CheckBox(965, 510, 100, 100, "2nd", 255, 255, 255, 50,50,50, 40));
 		secondBox.getJComponent().addActionListener(this);
-		panel.add(secondBox);
 		
-		turnsTextField = new TextField(1115, 455, 100, 100, " turns", 40);
-		panel.add(turnsTextField);
 		
-		oppDeckComboBox = new ComboBox(1265, 455, 300, 100, "x", 255, 255, 255, 120, 50, 50, 28);
+		getPanel().add(turnsTextField = new TextField(1115, 455, 100, 100, " turns",40));
+
+		
+		getPanel().add(oppDeckComboBox = new ComboBox(1265, 455, 300, 100, "x", 255, 255, 255, 120, 50, 50, 28));
 		OppDeck[] items = OppDeck.values();
 		oppDeckComboBox.getJComponent().setModel(new DefaultComboBoxModel(items));
-		panel.add(oppDeckComboBox);
 		
-		addDuelButton = new Button(900, 720, 120, 56, "ADD", 50, 255, 50, 70);
-		addDuelButton.getJComponent().addActionListener(this);
-		panel.add(addDuelButton);
+		getPanel().add(addDuelButton = new TextButton(680, 138, 56, "ADD", 70, 50, 200, 50, 50, 255, 50, false), this);
 
-		returnButton = new Button(865, 950, 190, 56, "RETURN",255,20,20,62);
-		returnButton.getJComponent().addActionListener(this);
-		panel.add(returnButton);
-		
-		bg = new JLabel();
-		ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("Backgrounds/bg1280x720.png"));
-		bg.setSize(1920,1080);
-		if (Config.res==2) {
-			icon = new ImageIcon(getClass().getClassLoader().getResource("Backgrounds/bg1280x720.png"));
-			bg.setSize(1280,720);
-		}
-		bg.setIcon(icon);
-		panel.getJComponent().add(bg);
+		getPanel().add(returnButton = new TextButton(950, 218, 62, "RETURN", 70, 200, 50, 50, 255, 50, 50, false), this);
 
+		addBackground();
 	}
 
 	private void resetInputs() {
@@ -133,7 +97,7 @@ public class AddDuelPanel implements ActionListener {
 		coinLBox.getJComponent().setSelected(false);
 		firstBox.getJComponent().setSelected(false);
 		secondBox.getJComponent().setSelected(false);
-		turnsTextField.resetToPlaceHolder();
+		turnsTextField.getJComponent().setText("");
 		oppDeckComboBox.getJComponent().setSelectedIndex(0);
 	}
 	
@@ -199,7 +163,6 @@ public class AddDuelPanel implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		
 		if (e.getSource() == addDuelButton.getJComponent()) {
-			
 			try {
 				try {
 					String deck = deckComboBox.getJComponent().getSelectedItem().toString();
@@ -238,11 +201,8 @@ public class AddDuelPanel implements ActionListener {
 		}
 		
 		if (e.getSource() == returnButton.getJComponent()) {
-			MenuPanel initialPanel = new MenuPanel(frame);
-			frame.getContentPane().removeAll();
-			frame.getContentPane().add(initialPanel.getPanel().getJComponent());
-			frame.revalidate();
-			initialPanel.getPanel().getJComponent().repaint();
+			MenuPanel initialPanel = new MenuPanel();
+			getFrame().switchPage(initialPanel);
 		}
 		
 		if (e.getSource()== duelWBox.getJComponent()) {

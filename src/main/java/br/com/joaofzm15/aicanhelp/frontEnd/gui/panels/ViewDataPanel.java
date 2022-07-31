@@ -1,5 +1,6 @@
 package br.com.joaofzm15.aicanhelp.frontEnd.gui.panels;
 
+import java.awt.Button;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.DecimalFormat;
@@ -12,39 +13,31 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
+import astral.components.visualComponents.ComboBox;
+import astral.components.visualComponents.Label;
+import astral.components.visualComponents.Page;
+import astral.components.visualComponents.TextButton;
 import br.com.joaofzm15.aicanhelp.backEnd.entitites.Deck;
 import br.com.joaofzm15.aicanhelp.backEnd.entitites.Duel;
 import br.com.joaofzm15.aicanhelp.backEnd.entitites.enums.OppDeck;
-import br.com.joaofzm15.aicanhelp.frontEnd.gui.components.Button;
-import br.com.joaofzm15.aicanhelp.frontEnd.gui.components.ComboBox;
-import br.com.joaofzm15.aicanhelp.frontEnd.gui.components.Label;
-import br.com.joaofzm15.aicanhelp.frontEnd.gui.components.Panel;
-import br.com.joaofzm15.aicanhelp.frontEnd.gui.config.Config;
 import br.com.joaofzm15.aicanhelp.frontEnd.http.FrontEndInMemoryData;
 import br.com.joaofzm15.aicanhelp.frontEnd.logic.Calculator;
 import br.com.joaofzm15.aicanhelp.frontEnd.logic.DataMiner;
 import br.com.joaofzm15.aicanhelp.frontEnd.logic.DuelListFilter;
 
-public class ViewDataPanel implements ActionListener {
+public class ViewDataPanel extends Page implements ActionListener {
 
-	private Panel panel;
-	public Panel getPanel() {
-		return panel;
-	}
-	
-	private JLabel bg;
-	
 	private ComboBox seasonComboBox;
-	private Button filterSeasonButton;
+	private TextButton filterSeasonButton;
 
 	private Label titleLabel;
 
 	private ComboBox deckComboBox;
-	private Button viewDeckStatsButton;
+	private TextButton viewDeckStatsButton;
 	
 	private ComboBox oppDeckComboBox;
 	
-	private Button returnButton;
+	private TextButton returnButton;
 	
 	private Label winRateLabel;
 	private Label goingFirstWinRateLabel;
@@ -55,14 +48,12 @@ public class ViewDataPanel implements ActionListener {
 
 	private JFrame frame;
 	
-	public ViewDataPanel(JFrame frame, List<Duel> parameterList, String title) {
-		
-		this.frame=frame;
+	public ViewDataPanel(List<Duel> parameterList, String title) {
+		super("Backgrounds/titlebg.png");
+
 		
 		List<Duel> listFilteredOnlySelectedSeason = DuelListFilter.filterOnlyFromSelectedSeason(parameterList);
 
-		panel = new Panel(1920,1080);
-		
 		Label disclaimer = new Label(340, 10, 1110, 33,
 				"*Duels from before March 10th 2022 do not contain info on coin tosses and who went first! ", 30, 200, 200, 255);
 		panel.add(disclaimer);
@@ -238,15 +229,7 @@ public class ViewDataPanel implements ActionListener {
 		panel.add(goingFirstFrequencyLabel);
 //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 		
-		bg = new JLabel();
-		ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("Backgrounds/bg1280x720.png"));
-		bg.setSize(1920,1080);
-		if (Config.res==2) {
-			icon = new ImageIcon(getClass().getClassLoader().getResource("Backgrounds/bg1280x720.png"));
-			bg.setSize(1280,720);
-		}
-		bg.setIcon(icon);
-		panel.getJComponent().add(bg);
+		addBackground();
 
 	}
 
@@ -272,7 +255,6 @@ public class ViewDataPanel implements ActionListener {
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		
 		if (e.getSource() == filterSeasonButton.getJComponent()) {
 			String selectedSeason = seasonComboBox.getJComponent().getSelectedItem().toString();
 			if (selectedSeason.equalsIgnoreCase("All Seasons")) {
@@ -282,8 +264,7 @@ public class ViewDataPanel implements ActionListener {
 				FrontEndInMemoryData.filteredSeason = Integer.valueOf(splitted[1]);
 			}
 			
-			ViewDataPanel initialPanel = new ViewDataPanel(frame
-					,FrontEndInMemoryData.getAllDuelsFromUser(),
+			ViewDataPanel initialPanel = new ViewDataPanel(FrontEndInMemoryData.getAllDuelsFromUser(),
 					"All decks  vs  All decks");
 			frame.getContentPane().removeAll();
 			frame.getContentPane().add(initialPanel.getPanel().getJComponent());
@@ -296,47 +277,36 @@ public class ViewDataPanel implements ActionListener {
 			ViewDataPanel initialPanel;
 			
 			if (deckComboBox.getJComponent().getSelectedItem().toString().equals("ALL DECKS")) {
-				
 				if (getSelectedOppDeck()!=OppDeck.ALL_DECKS) {
 					allDuelsFromSelectedDeck=DuelListFilter.filterOnlyAgainst(
 							FrontEndInMemoryData.getAllDuelsFromUser(),
 							getSelectedOppDeck());
-					initialPanel = new ViewDataPanel(frame,allDuelsFromSelectedDeck,
+					initialPanel = new ViewDataPanel(allDuelsFromSelectedDeck,
 							"All decks  vs  "+formatOppDeckString(getSelectedOppDeck()));
 				} else {
 					allDuelsFromSelectedDeck=FrontEndInMemoryData.getAllDuelsFromUser();
-					initialPanel = new ViewDataPanel(frame,allDuelsFromSelectedDeck,"All decks  vs  All decks");
+					initialPanel = new ViewDataPanel(allDuelsFromSelectedDeck,"All decks  vs  All decks");
 				}
-				
-			
 			} else {
 				
 				if (getSelectedOppDeck()!=OppDeck.ALL_DECKS) {
 					allDuelsFromSelectedDeck=DuelListFilter.filterOnlyAgainst(
 							getSelectedDeck().getDuels(),
 							getSelectedOppDeck());
-					initialPanel = new ViewDataPanel(frame
-							,allDuelsFromSelectedDeck,getSelectedDeck().getName()+"  vs  "+formatOppDeckString(getSelectedOppDeck()));
+					initialPanel = new ViewDataPanel(allDuelsFromSelectedDeck,getSelectedDeck().getName()+"  vs  "+formatOppDeckString(getSelectedOppDeck()));
 				} else {
 					allDuelsFromSelectedDeck=getSelectedDeck().getDuels();
-					initialPanel = new ViewDataPanel(frame
-							,allDuelsFromSelectedDeck, getSelectedDeck().getName()+"  vs  All Decks");
+					initialPanel = new ViewDataPanel(allDuelsFromSelectedDeck, getSelectedDeck().getName()+"  vs  All Decks");
 				}
 		
 			}
-			frame.getContentPane().removeAll();
-			frame.getContentPane().add(initialPanel.getPanel().getJComponent());
-			frame.revalidate();
-			initialPanel.getPanel().getJComponent().repaint();
+			getFrame().switchPage(initialPanel);
 		}
 			
 		
 		if (e.getSource() == returnButton.getJComponent()) {
-			MenuPanel initialPanel = new MenuPanel(frame);
-			frame.getContentPane().removeAll();
-			frame.getContentPane().add(initialPanel.getPanel().getJComponent());
-			frame.revalidate();
-			initialPanel.getPanel().getJComponent().repaint();
+			MenuPanel initialPanel = new MenuPanel();
+			getFrame().switchPage(initialPanel);
 		}
 	}
 }
