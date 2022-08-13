@@ -27,15 +27,7 @@ public class AiCanHelpApplication {
 		ConfigurableApplicationContext context = builder.run(args);
 		
 		LoginPanel secondPanel = new LoginPanel();
-		
-		//-------------------
-//		AddDeckPanel secondPanel = new AddDeckPanel();
-//		AddDuelPanel secondPanel = new AddDuelPanel();
-//		MenuPanel secondPanel = new MenuPanel();
-//		RegisterAccountPanel secondPanel = new RegisterAccountPanel();
-//		ViewDataPanel secondPanel = new ViewDataPanel();
-		
-		//-------------------
+
 		frame.switchPage(secondPanel);
 
 	}
