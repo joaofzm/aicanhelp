@@ -53,16 +53,16 @@ public class AddDuelPanel extends Page implements ActionListener {
 		super("Backgrounds/cleanbg.png");
 
 
-		getPanel().add(new Label(0, 100, 1920, 200, "ADD DUEL", 210, 40, 40, 220, false));
+		getPanel().add(new Label(0, 100, 1920, 200, "ADD DUEL", 210, 200, 255, 62, false));
 		
 
-		getPanel().add(deckComboBox = new ComboBox(355, 455, 300, 100, "x", 255, 255, 255,50, 120, 50, 28));
+		getPanel().add(deckComboBox = new ComboBox(355, 455, 300, 100, "x", 0, 0, 0,200, 255, 62, 28));
 		List<Deck> decksList = FrontEndInMemoryData.currentlyLoggedPlayer.getDecks();
 		deckComboBox.getJComponent().setModel(new DefaultComboBoxModel(decksList.toArray()));
 		
-		getPanel().add(duelWBox = new CheckBox(705, 400, 100, 100, "W", 255, 255, 255, 50,255,50, 50));
+		getPanel().add(duelWBox = new CheckBox(705, 400, 100, 100, "W", 255, 255, 255, 200,255,62, 50));
 		duelWBox.getJComponent().addActionListener(this);
-		getPanel().add(duelLBox = new CheckBox(705, 510, 100, 100, "L", 255, 255, 255, 255,50,50, 50));
+		getPanel().add(duelLBox = new CheckBox(705, 510, 100, 100, "L", 255, 255, 255, 120,50,50, 50));
 		duelLBox.getJComponent().addActionListener(this);
 		
 		getPanel().add(coinWBox = new CheckBox(855, 400, 100, 100, "W", 255, 255, 255, 200,200,50, 50));
@@ -83,7 +83,7 @@ public class AddDuelPanel extends Page implements ActionListener {
 		OppDeck[] items = OppDeck.values();
 		oppDeckComboBox.getJComponent().setModel(new DefaultComboBoxModel(items));
 		
-		getPanel().add(addDuelButton = new TextButton(680, 138, 56, "ADD", 70, 50, 200, 50, 50, 255, 50, false), this);
+		getPanel().add(addDuelButton = new TextButton(680, 138, 56, "ADD", 70,200,255,62, 40, 40, 220, false), this);
 
 		getPanel().add(returnButton = new TextButton(950, 218, 62, "RETURN", 70, 200, 50, 50, 255, 50, 50, false), this);
 

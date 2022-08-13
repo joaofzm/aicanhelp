@@ -30,12 +30,12 @@ public class AddDeckPanel extends Page implements ActionListener {
 		super("Backgrounds/cleanbg.png");
 
 		
-		getPanel().add(new Label(0, 100, 1920, 200, "ADD DECK", 210, 40, 40, 220, false));
+		getPanel().add(new Label(0, 100, 1920, 200, "ADD DECK", 210, 200, 255, 62, false));
 
 
 		getPanel().add(deckNameTextField = new TextField(480, 280, 100, "DECK NAME",50));
 
-		getPanel().add(addDeckButton = new TextButton(630, 118, 56, "ADD", 70, 50, 200, 50, 50, 255, 50, false), this);
+		getPanel().add(addDeckButton = new TextButton(630, 118, 56, "ADD", 70,200,255,62, 40, 40, 220, false), this);
 
 
 		getPanel().add(returnButton = new TextButton(950, 218, 62, "RETURN", 70, 200, 50, 50, 255, 50, 50, false), this);

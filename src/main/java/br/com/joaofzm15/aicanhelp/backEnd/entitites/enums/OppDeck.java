@@ -11,7 +11,7 @@ public enum OppDeck {
 	Eldlich(6),
 	Sky_striker(7),
 	Swordsoul(8),
-	EMPTY2(9),
+	Floowadereeze(9),
 	EMPTY3(10),
 	EMPTY4(11),
 	EMPTY5(12),

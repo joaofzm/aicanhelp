@@ -48,18 +48,18 @@ public class ViewDataPanel extends Page implements ActionListener {
 		
 		getPanel().add(new Label(340, 10, 1110, 33,
 				"*Duels from before March 10th 2022 do not contain info on coin tosses and who went first!",
-				30, 200, 200, 255, false));
+				30, 255, 255, 200, false));
 
 		getPanel().add(new Label(340, 50, 1110, 33,
 				"*Duels from before Season 4 do not contain info on the amount of turns! ",
-				30, 200, 200, 255, false));
+				30, 255, 255, 200, false));
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		int yAxis = 780;
 		
 		getPanel().add(new Label(530, 720, 550, 100,
 				"-Best Matchups-",
-				40, 200, 200, 255, false));
+				40, 200, 255, 62, false));
 		
 		LinkedHashMap<OppDeck,Double> bestMatchupsMap = DataMiner.sortLinkedHashMapByBestWinRate(
 				DataMiner.getLinkedHashMapOfMatchupsAndWinrates(listFilteredOnlySelectedSeason));
@@ -71,7 +71,7 @@ public class ViewDataPanel extends Page implements ActionListener {
 			
 			getPanel().add(new Label(530, yAxis, 550, 100,
 					keys.get(i).toString()+" "+bestMatchupsMap.get(keys.get(i))+"%",
-					40, 200, 200, 255, false));
+					40, 255, 255, 200, false));
 			
 			yAxis+= 60;
 		}
@@ -80,7 +80,7 @@ public class ViewDataPanel extends Page implements ActionListener {
 		
 		getPanel().add(new Label(1080, 720, 550, 100,
 				"-Worse Matchups-",
-				40, 200, 200, 255, false));
+				40, 200, 255, 62, false));
 		
 		LinkedHashMap<OppDeck,Double> worseMatchupsMap = DataMiner.sortLinkedHashMapByWorseWinRate(
 				DataMiner.getLinkedHashMapOfMatchupsAndWinrates(listFilteredOnlySelectedSeason));
@@ -92,7 +92,7 @@ public class ViewDataPanel extends Page implements ActionListener {
 			
 			getPanel().add(new Label(1080, yAxis, 590, 100,
 					keys.get(i).toString()+" "+worseMatchupsMap.get(keys.get(i))+"%",
-					40, 200, 200, 255, false));
+					40, 255, 255, 200, false));
 			
 			yAxis+= 60;
 		}
@@ -108,9 +108,9 @@ public class ViewDataPanel extends Page implements ActionListener {
 		seasonComboBox.getJComponent().setSelectedIndex(FrontEndInMemoryData.filteredSeason);
 		
 		
-		getPanel().add(filterSeasonButton = new TextButton(75, 138, 180, 56, "FILTER", 62, 150, 150, 200, 100, 100, 255, false), this);
+		getPanel().add(filterSeasonButton = new TextButton(75, 138, 180, 56, "FILTER", 62,200,255,62, 40, 40, 220, false), this);
 
-		getPanel().add(new Label(100, 120, 1920, 130, title, 72, 200, 200, 255, false));
+		getPanel().add(new Label(100, 120, 1920, 130, title, 72, 200, 255, 62, false));
 
 		getPanel().add(deckComboBox = new ComboBox(25, 830, 300, 100, "x", 255, 255, 255, 50, 120, 50, 28));
 		List<Deck> decksList = FrontEndInMemoryData.currentlyLoggedPlayer.getDecks();
@@ -122,14 +122,14 @@ public class ViewDataPanel extends Page implements ActionListener {
 		deckComboBox.getJComponent().setModel(new DefaultComboBoxModel(copyOfDecksList.toArray()));
 		
 		
-		getPanel().add(viewDeckStatsButton = new TextButton(360, 915, 190, 56, "FILTER", 62, 150, 150, 200, 100, 100, 255, false), this);
+		getPanel().add(viewDeckStatsButton = new TextButton(360, 915, 190, 56, "FILTER", 62,200,255,62, 40, 40, 220, false), this);
 
 		getPanel().add(oppDeckComboBox = new ComboBox(25, 960, 300, 100, "x", 255, 255, 255, 120, 50, 50, 28));
 		OppDeck[] items = OppDeck.values();
 		oppDeckComboBox.getJComponent().setModel(new DefaultComboBoxModel(items));
 		
 		
-		getPanel().add(returnButton = new TextButton(1680, 980, 200, 56, "RETURN", 62, 150, 150, 200, 100, 100, 255, false), this);
+		getPanel().add(returnButton = new TextButton(1680, 980, 200, 56, "RETURN", 62,200, 50, 50, 255, 50, 50, false), this);
 
 //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 	    DecimalFormat df = new DecimalFormat("0.000");
