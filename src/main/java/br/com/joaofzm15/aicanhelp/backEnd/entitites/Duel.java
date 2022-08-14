@@ -17,7 +17,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import br.com.joaofzm15.aicanhelp.backEnd.entitites.enums.OppDeck;
 
 @Entity
-public class Duel implements Serializable {
+public class Duel implements Serializable, Comparable<Duel> {
 	private static final long serialVersionUID = 8062344200862253875L;
 	
 	@Id
@@ -140,6 +140,17 @@ public class Duel implements Serializable {
 	@Override
 	public String toString() {
 		return "\nID: "+ id + " - OPP DECK: " +oppDeck ;
+	}
+
+	@Override
+	public int compareTo(Duel o) {
+		if (this.getId()>o.getId()) {
+			return 1;
+		} else if (this.getId()<o.getId()) {
+			return -1;
+		} else {
+			return 0;
+		}
 	}
 	
 }

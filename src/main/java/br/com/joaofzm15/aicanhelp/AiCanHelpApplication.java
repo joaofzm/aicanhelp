@@ -20,7 +20,7 @@ public class AiCanHelpApplication {
 		
 		Frame.setConfig(2, false);
 		LoginLoadingPanel loadingScreenPanel = new LoginLoadingPanel();
-		Frame frame = new Frame("AI can help!", "Assets/windowIcon.png", loadingScreenPanel);
+		Frame frame = new Frame("AI Can Help", "Assets/windowIcon.png", loadingScreenPanel);
 		
 		SpringApplicationBuilder builder = new SpringApplicationBuilder(AiCanHelpApplication.class);
 		builder.headless(false);

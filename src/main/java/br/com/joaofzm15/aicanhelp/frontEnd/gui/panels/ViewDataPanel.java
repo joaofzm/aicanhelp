@@ -4,7 +4,9 @@ import java.awt.Button;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.DecimalFormat;
+import java.time.Instant;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
 
@@ -41,9 +43,55 @@ public class ViewDataPanel extends Page implements ActionListener {
 	
 	public ViewDataPanel(List<Duel> parameterList, String title) {
 		super("Backgrounds/cleanbg.png");
-
-		
 		List<Duel> listFilteredOnlySelectedSeason = DuelListFilter.filterOnlyFromSelectedSeason(parameterList);
+		
+
+//xxxxxxxxxxxxxxxxxxxxxxCOINSxINxAxROWxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+		//Remove duels before March 10th
+		List<Duel> listSortedById = new ArrayList<>(); 
+		for (Duel duel : listFilteredOnlySelectedSeason) {
+			if (duel.getDate().isAfter(DuelListFilter.minDateForCoinAndFirstSecond)) {
+				listSortedById.add(duel);
+			}
+		}
+		Collections.sort(listSortedById);
+		
+		int wCoinsInARow=0;
+		int lCoinsInARow=0;
+		int maxWCoinsInARow = 0;
+		int maxLCoinsInARow = 0;
+		boolean lastOneW = false;
+		boolean lastOneL = false;
+		
+		for (Duel duel : listSortedById) {
+			if (duel.isCoinResult()) {
+				wCoinsInARow++;
+			} else {
+				wCoinsInARow = 0;
+			}
+			
+			if (wCoinsInARow > maxWCoinsInARow) {
+				maxWCoinsInARow = wCoinsInARow;
+			}
+		}
+		
+		for (Duel duel : listSortedById) {
+			if (!duel.isCoinResult()) {
+				lCoinsInARow++;
+			} else {
+				lCoinsInARow = 0;
+			}
+			
+			if (lCoinsInARow > maxLCoinsInARow) {
+				maxLCoinsInARow = lCoinsInARow;
+			}
+		}
+		//TODO Change this Sysout to actual labels on the panel
+		//Fix register screen
+		//Add resolution and save login
+		System.out.println("Max Ws in a row:" + maxWCoinsInARow);
+		System.out.println("Max Ls in a row:" + maxLCoinsInARow);
+//xxxxxxxxxxxxxxxxxxxxxxCOINSxINxAxROWxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
 		
 		getPanel().add(new Label(340, 10, 1110, 33,

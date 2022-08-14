@@ -10,7 +10,7 @@ import br.com.joaofzm15.aicanhelp.frontEnd.http.FrontEndInMemoryData;
 
 public class DuelListFilter {
 	
-	private static final Instant minDateForCoinAndFirstSecond = Instant.parse("2022-03-10T00:00:00Z");
+	public static final Instant minDateForCoinAndFirstSecond = Instant.parse("2022-03-10T00:00:00Z");
 
 	public static List<Duel> filterOnlyFromSelectedSeason(List<Duel> list) {
 		List<Duel> toBeReturned = new ArrayList<>();
