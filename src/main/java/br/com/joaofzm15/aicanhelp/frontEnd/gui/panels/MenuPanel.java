@@ -26,7 +26,6 @@ public class MenuPanel extends Page implements ActionListener {
 	private TextButton logOutButton;
 	private TextButton exitButton;
 
-	private JFrame frame;
 	
 	public MenuPanel() {
 		super("Backgrounds/titlebg.png");
@@ -41,7 +40,7 @@ public class MenuPanel extends Page implements ActionListener {
 
 		getPanel().add(viewDataButton = new TextButton(828, 650, 264, 56, "VIEW DATA",62,200,255,62, 40, 40, 220, false),this);
 
-		getPanel().add(exitButton = new TextButton(950, 103, 62, "EXIT", 62, 200, 50, 50, 255, 50, 50, false), this);
+		getPanel().add(exitButton = new TextButton(950, 103, 62, "EXIT", 61, 200, 50, 50, 255, 50, 50, false), this);
 
 		addBackground();
 

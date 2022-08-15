@@ -2,14 +2,21 @@ package br.com.joaofzm15.aicanhelp.frontEnd.gui.panels;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
+import astral.components.visualComponents.CheckBox;
+import astral.components.visualComponents.ComboBox;
+import astral.components.visualComponents.Frame;
 import astral.components.visualComponents.Page;
 import astral.components.visualComponents.PasswordField;
 import astral.components.visualComponents.TextButton;
 import astral.components.visualComponents.TextField;
+import br.com.joaofzm15.aicanhelp.AiCanHelpApplication;
 import br.com.joaofzm15.aicanhelp.backEnd.entitites.Player;
 import br.com.joaofzm15.aicanhelp.frontEnd.http.FrontEndInMemoryData;
 
@@ -21,21 +28,44 @@ public class LoginPanel extends Page implements ActionListener {
 	private TextButton loginButton;
 	private TextButton registerButton;
 	private TextButton exitButton;
-
-	private JFrame frame;
+	
+	private TextButton applyResButton;
+	private CheckBox borderlessCheckBox;
+	private ComboBox resComboBox;
 
 	public LoginPanel() {
 		super("Backgrounds/titlebg.png");
+		
+		List<String> resComboBoxOptionsList = new ArrayList<>();
+		resComboBoxOptionsList.add("1280x720");
+		resComboBoxOptionsList.add("1792x1008");
+		resComboBoxOptionsList.add("1920x1080");
+		getPanel().add(resComboBox = new ComboBox(25, 25, 300, 100, "", 255, 255, 255, 0, 111, 245, 28));
+		resComboBox.getJComponent().setModel(new DefaultComboBoxModel(resComboBoxOptionsList.toArray()));
+		if (Frame.res==1) {
+			resComboBox.getJComponent().setSelectedIndex(2);
+		} else if (Frame.res==2) {
+			resComboBox.getJComponent().setSelectedIndex(1);
+		} else if (Frame.res==3) {
+			resComboBox.getJComponent().setSelectedIndex(0);
+		}
+		getPanel().add(borderlessCheckBox = new CheckBox(193, 130, 130, 65, "Borderless", 255, 255, 255, 0,111,245, 22));
+		borderlessCheckBox.getJComponent().setSelected(Frame.borderless);
+		borderlessCheckBox.getJComponent().addActionListener(this);
+		
+		getPanel().add(applyResButton = new TextButton(10, 138, 180, 56, "APPLY", 62,200,255,62, 40, 40, 220, false), this);
+		
 
+		
 		getPanel().add(usernameTextField = new TextField(480, 300, 62, "  username", 63));
 		
 		getPanel().add(passwordTextField = new PasswordField(600, 300, 62, "  password", 63));
 		
-		getPanel().add(loginButton = new TextButton(750, 145, 62, "LOGIN", 62, 200,255,62, 40, 40, 220, false), this);
+		getPanel().add(loginButton = new TextButton(750, 145, 62, "LOGIN", 61, 200,255,62, 40, 40, 220, false), this);
 
-		getPanel().add(registerButton = new TextButton(850, 230, 62, "REGISTER", 62, 50, 50, 200, 30, 30, 255, false), this);
+		getPanel().add(registerButton = new TextButton(850, 230, 62, "REGISTER", 61, 50, 50, 200, 30, 30, 255, false), this);
 
-		getPanel().add(exitButton = new TextButton(950, 103, 62, "EXIT", 62, 200, 50, 50, 255, 50, 50, false), this);
+		getPanel().add(exitButton = new TextButton(950, 103, 62, "EXIT", 61, 200, 50, 50, 255, 50, 50, false), this);
 
 		addBackground();
 
@@ -44,6 +74,27 @@ public class LoginPanel extends Page implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 
+		if (e.getSource() == applyResButton.getJComponent()) {
+			if (resComboBox.getJComponent().getSelectedIndex()==0) {
+				Frame.setConfig(3, borderlessCheckBox.getJComponent().isSelected());
+			} else if (resComboBox.getJComponent().getSelectedIndex()==1) {
+				Frame.setConfig(2, borderlessCheckBox.getJComponent().isSelected());
+			} else if (resComboBox.getJComponent().getSelectedIndex()==2) {
+				Frame.setConfig(1, borderlessCheckBox.getJComponent().isSelected());
+			}
+			
+			//Centers frame only for 1280x720 resolutions
+			boolean centered = false;
+			if (Frame.res==3) {
+				centered=true;
+			}
+			AiCanHelpApplication.appFrame.dispose();
+			LoginPanel initialFrame = new LoginPanel();
+			Frame frame = new Frame("AI Can Help", "Assets/windowIcon.png", initialFrame,centered);
+			AiCanHelpApplication.appFrame=frame;
+		}
+		
+		
 		if (e.getSource() == loginButton.getJComponent()) {
 			Player p = FrontEndInMemoryData.logIn(usernameTextField.getJComponent().getText());
 
