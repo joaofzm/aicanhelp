@@ -2,11 +2,12 @@ package br.com.joaofzm15.aicanhelp.frontEnd.gui.panels;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 import astral.components.visualComponents.CheckBox;
@@ -34,7 +35,7 @@ public class LoginPanel extends Page implements ActionListener {
 	private ComboBox resComboBox;
 
 	public LoginPanel() {
-		super("Backgrounds/titlebg.png");
+		super("Backgrounds/loginbg.png");
 		
 		List<String> resComboBoxOptionsList = new ArrayList<>();
 		resComboBoxOptionsList.add("1280x720");
@@ -73,14 +74,46 @@ public class LoginPanel extends Page implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-
+		
 		if (e.getSource() == applyResButton.getJComponent()) {
+			
+			String borderlessToString;
+			if (borderlessCheckBox.getJComponent().isSelected()) {
+				borderlessToString = "true";
+			} else {
+				borderlessToString = "false";
+			}
+			
 			if (resComboBox.getJComponent().getSelectedIndex()==0) {
 				Frame.setConfig(3, borderlessCheckBox.getJComponent().isSelected());
+				FileWriter myWriter;
+			    try {
+			    	myWriter = new FileWriter("src/main/resources/Preferences/resPreferences.txt");
+			    	myWriter.write("3-"+borderlessToString);
+			        myWriter.close();
+			      } catch (IOException iOexception) {
+			        iOexception.printStackTrace();
+			      }
 			} else if (resComboBox.getJComponent().getSelectedIndex()==1) {
 				Frame.setConfig(2, borderlessCheckBox.getJComponent().isSelected());
+				FileWriter myWriter;
+			    try {
+			    	myWriter = new FileWriter("src/main/resources/Preferences/resPreferences.txt");
+			    	myWriter.write("2-"+borderlessToString);
+			        myWriter.close();
+			      } catch (IOException iOexception) {
+			        iOexception.printStackTrace();
+			      }
 			} else if (resComboBox.getJComponent().getSelectedIndex()==2) {
 				Frame.setConfig(1, borderlessCheckBox.getJComponent().isSelected());
+				FileWriter myWriter;
+			    try {
+			    	myWriter = new FileWriter("src/main/resources/Preferences/resPreferences.txt");
+			    	myWriter.write("1-"+borderlessToString);
+			        myWriter.close();
+			      } catch (IOException iOexception) {
+			        iOexception.printStackTrace();
+			      }
 			}
 			
 			//Centers frame only for 1280x720 resolutions
