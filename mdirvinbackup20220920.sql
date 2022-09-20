@@ -5,7 +5,7 @@
 -- Dumped from database version 14.5
 -- Dumped by pg_dump version 14.5
 
--- Started on 2022-09-16 01:11:44
+-- Started on 2022-09-20 13:48:04
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -1349,6 +1349,12 @@ INSERT INTO public.duel (id, coin_result, date, first, opp_deck, result, turns, 
 INSERT INTO public.duel (id, coin_result, date, first, opp_deck, result, turns, deck_id) VALUES (1183, false, '2022-09-15 15:25:58', false, 1, false, 4, 11);
 INSERT INTO public.duel (id, coin_result, date, first, opp_deck, result, turns, deck_id) VALUES (1184, false, '2022-09-15 15:57:12', false, 1, true, 4, 11);
 INSERT INTO public.duel (id, coin_result, date, first, opp_deck, result, turns, deck_id) VALUES (1185, false, '2022-09-15 15:57:20', true, 1, false, 8, 11);
+INSERT INTO public.duel (id, coin_result, date, first, opp_deck, result, turns, deck_id) VALUES (1186, true, '2022-09-16 21:25:17', false, 1, false, 3, 1);
+INSERT INTO public.duel (id, coin_result, date, first, opp_deck, result, turns, deck_id) VALUES (1187, true, '2022-09-16 21:36:28', true, 8, true, 3, 13);
+INSERT INTO public.duel (id, coin_result, date, first, opp_deck, result, turns, deck_id) VALUES (1188, false, '2022-09-18 14:24:15', false, 1, true, 8, 13);
+INSERT INTO public.duel (id, coin_result, date, first, opp_deck, result, turns, deck_id) VALUES (1189, false, '2022-09-18 17:13:26', false, 1, false, 5, 13);
+INSERT INTO public.duel (id, coin_result, date, first, opp_deck, result, turns, deck_id) VALUES (1190, false, '2022-09-18 17:15:51', false, 1, false, 2, 13);
+INSERT INTO public.duel (id, coin_result, date, first, opp_deck, result, turns, deck_id) VALUES (1191, false, '2022-09-18 17:16:53', true, 1, true, 1, 13);
 
 
 --
@@ -1375,7 +1381,7 @@ SELECT pg_catalog.setval('public.deck_id_seq', 13, true);
 -- Name: duel_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.duel_id_seq', 1185, true);
+SELECT pg_catalog.setval('public.duel_id_seq', 1191, true);
 
 
 --
@@ -1432,7 +1438,7 @@ ALTER TABLE ONLY public.duel
     ADD CONSTRAINT fknoj26gy1jf23tqps4791gqbd2 FOREIGN KEY (deck_id) REFERENCES public.deck(id);
 
 
--- Completed on 2022-09-16 01:11:44
+-- Completed on 2022-09-20 13:48:04
 
 --
 -- PostgreSQL database dump complete
