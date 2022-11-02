@@ -51,7 +51,7 @@ public class ViewDataPanel extends Page implements ActionListener {
 		getPanel().add(seasonComboBox = new ComboBox(25, 25, 300, 100, "x", 255, 255, 255, 0, 111, 245, 28));
 		List<String> seasonComboBoxListOfItems = new ArrayList<>();
 		seasonComboBoxListOfItems.add("All Seasons");
-		for (int i=1; i<11; i++) {
+		for (int i=1; i<25; i++) {
 			seasonComboBoxListOfItems.add("Season "+i);
 		}
 		seasonComboBox.getJComponent().setModel(new DefaultComboBoxModel(seasonComboBoxListOfItems.toArray()));
