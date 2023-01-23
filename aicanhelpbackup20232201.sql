@@ -5,7 +5,7 @@
 -- Dumped from database version 14.5
 -- Dumped by pg_dump version 14.5
 
--- Started on 2022-10-06 21:44:18
+-- Started on 2023-01-22 22:25:32
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -156,6 +156,7 @@ INSERT INTO public.deck (id, name, deck_owner_id) VALUES (10, 'Swordsoul', 1);
 INSERT INTO public.deck (id, name, deck_owner_id) VALUES (11, 'Numeron', 1);
 INSERT INTO public.deck (id, name, deck_owner_id) VALUES (12, 'Brave Prank Kids', 1);
 INSERT INTO public.deck (id, name, deck_owner_id) VALUES (13, 'D/D/D', 1);
+INSERT INTO public.deck (id, name, deck_owner_id) VALUES (14, 'Dinos', 1);
 
 
 --
@@ -1363,6 +1364,63 @@ INSERT INTO public.duel (id, coin_result, date, first, opp_deck, result, turns, 
 INSERT INTO public.duel (id, coin_result, date, first, opp_deck, result, turns, deck_id) VALUES (1197, false, '2022-10-04 20:27:22', false, 1, true, 5, 13);
 INSERT INTO public.duel (id, coin_result, date, first, opp_deck, result, turns, deck_id) VALUES (1198, true, '2022-10-05 21:37:03', true, 1, true, 5, 13);
 INSERT INTO public.duel (id, coin_result, date, first, opp_deck, result, turns, deck_id) VALUES (1199, false, '2022-10-06 21:41:03', true, 1, true, 1, 13);
+INSERT INTO public.duel (id, coin_result, date, first, opp_deck, result, turns, deck_id) VALUES (1200, false, '2022-10-07 21:45:55', false, 1, true, 2, 13);
+INSERT INTO public.duel (id, coin_result, date, first, opp_deck, result, turns, deck_id) VALUES (1201, false, '2022-10-07 21:58:17', false, 1, false, 7, 13);
+INSERT INTO public.duel (id, coin_result, date, first, opp_deck, result, turns, deck_id) VALUES (1202, true, '2022-10-08 16:06:07', false, 1, true, 6, 1);
+INSERT INTO public.duel (id, coin_result, date, first, opp_deck, result, turns, deck_id) VALUES (1203, true, '2022-10-09 15:15:59', false, 1, true, 6, 1);
+INSERT INTO public.duel (id, coin_result, date, first, opp_deck, result, turns, deck_id) VALUES (1204, false, '2022-10-10 22:17:22', true, 1, true, 4, 1);
+INSERT INTO public.duel (id, coin_result, date, first, opp_deck, result, turns, deck_id) VALUES (1205, true, '2022-10-11 17:32:31', false, 1, true, 6, 1);
+INSERT INTO public.duel (id, coin_result, date, first, opp_deck, result, turns, deck_id) VALUES (1206, true, '2022-10-12 15:27:08', false, 1, true, 3, 1);
+INSERT INTO public.duel (id, coin_result, date, first, opp_deck, result, turns, deck_id) VALUES (1207, false, '2022-10-12 15:33:05', true, 1, false, 15, 1);
+INSERT INTO public.duel (id, coin_result, date, first, opp_deck, result, turns, deck_id) VALUES (1208, true, '2022-10-12 15:43:49', false, 1, false, 3, 1);
+INSERT INTO public.duel (id, coin_result, date, first, opp_deck, result, turns, deck_id) VALUES (1209, true, '2022-10-12 15:50:32', false, 1, false, 4, 1);
+INSERT INTO public.duel (id, coin_result, date, first, opp_deck, result, turns, deck_id) VALUES (1210, true, '2022-10-12 15:53:40', false, 16, true, 3, 1);
+INSERT INTO public.duel (id, coin_result, date, first, opp_deck, result, turns, deck_id) VALUES (1211, true, '2022-10-13 15:27:24', false, 1, true, 6, 1);
+INSERT INTO public.duel (id, coin_result, date, first, opp_deck, result, turns, deck_id) VALUES (1212, true, '2022-10-29 15:23:20', false, 1, true, 4, 10);
+INSERT INTO public.duel (id, coin_result, date, first, opp_deck, result, turns, deck_id) VALUES (1213, false, '2022-10-29 15:33:21', true, 1, true, 2, 10);
+INSERT INTO public.duel (id, coin_result, date, first, opp_deck, result, turns, deck_id) VALUES (1214, true, '2022-10-29 15:40:18', true, 1, true, 2, 10);
+INSERT INTO public.duel (id, coin_result, date, first, opp_deck, result, turns, deck_id) VALUES (1215, true, '2022-10-29 15:45:47', true, 1, true, 2, 10);
+INSERT INTO public.duel (id, coin_result, date, first, opp_deck, result, turns, deck_id) VALUES (1216, false, '2022-10-30 15:12:33', false, 1, true, 18, 4);
+INSERT INTO public.duel (id, coin_result, date, first, opp_deck, result, turns, deck_id) VALUES (1217, true, '2022-10-30 15:20:02', true, 1, false, 2, 4);
+INSERT INTO public.duel (id, coin_result, date, first, opp_deck, result, turns, deck_id) VALUES (1218, true, '2022-10-30 15:27:19', true, 1, false, 2, 10);
+INSERT INTO public.duel (id, coin_result, date, first, opp_deck, result, turns, deck_id) VALUES (1219, true, '2022-10-30 15:28:00', true, 1, true, 1, 10);
+INSERT INTO public.duel (id, coin_result, date, first, opp_deck, result, turns, deck_id) VALUES (1220, false, '2022-10-30 15:30:52', false, 1, false, 3, 10);
+INSERT INTO public.duel (id, coin_result, date, first, opp_deck, result, turns, deck_id) VALUES (1221, false, '2022-10-30 15:40:05', false, 1, true, 3, 10);
+INSERT INTO public.duel (id, coin_result, date, first, opp_deck, result, turns, deck_id) VALUES (1222, true, '2022-10-30 15:43:51', true, 1, true, 2, 10);
+INSERT INTO public.duel (id, coin_result, date, first, opp_deck, result, turns, deck_id) VALUES (1223, true, '2022-10-30 15:47:17', true, 8, false, 2, 10);
+INSERT INTO public.duel (id, coin_result, date, first, opp_deck, result, turns, deck_id) VALUES (1224, false, '2022-10-30 15:52:25', false, 1, true, 2, 10);
+INSERT INTO public.duel (id, coin_result, date, first, opp_deck, result, turns, deck_id) VALUES (1225, false, '2022-10-30 16:02:59', false, 1, true, 2, 10);
+INSERT INTO public.duel (id, coin_result, date, first, opp_deck, result, turns, deck_id) VALUES (1226, false, '2022-10-30 21:19:16', false, 1, true, 2, 10);
+INSERT INTO public.duel (id, coin_result, date, first, opp_deck, result, turns, deck_id) VALUES (1227, true, '2022-10-30 21:23:02', true, 1, false, 2, 10);
+INSERT INTO public.duel (id, coin_result, date, first, opp_deck, result, turns, deck_id) VALUES (1228, true, '2022-10-30 21:29:36', true, 1, true, 3, 10);
+INSERT INTO public.duel (id, coin_result, date, first, opp_deck, result, turns, deck_id) VALUES (1229, true, '2022-10-30 21:34:22', true, 29, true, 3, 10);
+INSERT INTO public.duel (id, coin_result, date, first, opp_deck, result, turns, deck_id) VALUES (1230, true, '2022-10-30 21:39:01', true, 1, true, 3, 10);
+INSERT INTO public.duel (id, coin_result, date, first, opp_deck, result, turns, deck_id) VALUES (1231, false, '2022-11-02 16:53:33', true, 1, true, 5, 1);
+INSERT INTO public.duel (id, coin_result, date, first, opp_deck, result, turns, deck_id) VALUES (1232, true, '2022-11-03 15:33:44', false, 1, true, 8, 1);
+INSERT INTO public.duel (id, coin_result, date, first, opp_deck, result, turns, deck_id) VALUES (1233, false, '2022-11-04 15:06:13', false, 1, false, 2, 14);
+INSERT INTO public.duel (id, coin_result, date, first, opp_deck, result, turns, deck_id) VALUES (1234, true, '2022-11-04 15:07:27', true, 1, false, 2, 14);
+INSERT INTO public.duel (id, coin_result, date, first, opp_deck, result, turns, deck_id) VALUES (1235, true, '2022-11-04 15:18:38', true, 1, true, 5, 14);
+INSERT INTO public.duel (id, coin_result, date, first, opp_deck, result, turns, deck_id) VALUES (1236, true, '2022-11-05 23:01:24', true, 1, true, 3, 14);
+INSERT INTO public.duel (id, coin_result, date, first, opp_deck, result, turns, deck_id) VALUES (1237, false, '2022-11-06 15:12:25', true, 1, true, 2, 14);
+INSERT INTO public.duel (id, coin_result, date, first, opp_deck, result, turns, deck_id) VALUES (1238, true, '2022-11-07 18:10:24', true, 1, true, 2, 14);
+INSERT INTO public.duel (id, coin_result, date, first, opp_deck, result, turns, deck_id) VALUES (1239, true, '2022-11-08 22:21:07', true, 1, true, 4, 14);
+INSERT INTO public.duel (id, coin_result, date, first, opp_deck, result, turns, deck_id) VALUES (1240, true, '2022-11-08 22:38:39', true, 1, true, 2, 14);
+INSERT INTO public.duel (id, coin_result, date, first, opp_deck, result, turns, deck_id) VALUES (1241, true, '2022-11-09 17:27:58', true, 1, true, 3, 14);
+INSERT INTO public.duel (id, coin_result, date, first, opp_deck, result, turns, deck_id) VALUES (1242, false, '2022-11-10 18:12:15', true, 1, true, 2, 14);
+INSERT INTO public.duel (id, coin_result, date, first, opp_deck, result, turns, deck_id) VALUES (1243, false, '2022-11-11 21:14:32', false, 1, true, 4, 14);
+INSERT INTO public.duel (id, coin_result, date, first, opp_deck, result, turns, deck_id) VALUES (1244, true, '2022-11-12 18:40:41', true, 1, true, 5, 14);
+INSERT INTO public.duel (id, coin_result, date, first, opp_deck, result, turns, deck_id) VALUES (1245, true, '2022-11-13 15:52:26', true, 1, true, 5, 14);
+INSERT INTO public.duel (id, coin_result, date, first, opp_deck, result, turns, deck_id) VALUES (1246, false, '2022-11-14 16:20:47', true, 1, true, 2, 14);
+INSERT INTO public.duel (id, coin_result, date, first, opp_deck, result, turns, deck_id) VALUES (1247, false, '2022-11-14 16:21:51', false, 1, false, 1, 14);
+INSERT INTO public.duel (id, coin_result, date, first, opp_deck, result, turns, deck_id) VALUES (1248, false, '2022-11-14 16:23:17', false, 1, true, 1, 14);
+INSERT INTO public.duel (id, coin_result, date, first, opp_deck, result, turns, deck_id) VALUES (1249, false, '2022-11-14 16:26:55', false, 1, false, 2, 14);
+INSERT INTO public.duel (id, coin_result, date, first, opp_deck, result, turns, deck_id) VALUES (1250, true, '2022-11-14 16:28:22', true, 1, true, 1, 14);
+INSERT INTO public.duel (id, coin_result, date, first, opp_deck, result, turns, deck_id) VALUES (1251, false, '2022-11-14 16:29:37', true, 1, true, 1, 14);
+INSERT INTO public.duel (id, coin_result, date, first, opp_deck, result, turns, deck_id) VALUES (1252, true, '2022-11-14 16:41:47', true, 1, true, 3, 14);
+INSERT INTO public.duel (id, coin_result, date, first, opp_deck, result, turns, deck_id) VALUES (1253, true, '2022-11-14 16:42:23', true, 1, false, 1, 14);
+INSERT INTO public.duel (id, coin_result, date, first, opp_deck, result, turns, deck_id) VALUES (1254, false, '2022-11-15 15:32:46', false, 1, false, 7, 14);
+INSERT INTO public.duel (id, coin_result, date, first, opp_deck, result, turns, deck_id) VALUES (1255, false, '2023-01-17 00:55:32', false, 1, false, 5, 1);
+INSERT INTO public.duel (id, coin_result, date, first, opp_deck, result, turns, deck_id) VALUES (1256, false, '2023-01-22 22:01:16', true, 1, true, 3, 1);
 
 
 --
@@ -1380,7 +1438,7 @@ INSERT INTO public.player (id, name, password) VALUES (1, 'irvin', '1234');
 -- Name: deck_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.deck_id_seq', 13, true);
+SELECT pg_catalog.setval('public.deck_id_seq', 14, true);
 
 
 --
@@ -1389,7 +1447,7 @@ SELECT pg_catalog.setval('public.deck_id_seq', 13, true);
 -- Name: duel_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.duel_id_seq', 1199, true);
+SELECT pg_catalog.setval('public.duel_id_seq', 1256, true);
 
 
 --
@@ -1446,7 +1504,7 @@ ALTER TABLE ONLY public.duel
     ADD CONSTRAINT fknoj26gy1jf23tqps4791gqbd2 FOREIGN KEY (deck_id) REFERENCES public.deck(id);
 
 
--- Completed on 2022-10-06 21:44:18
+-- Completed on 2023-01-22 22:25:32
 
 --
 -- PostgreSQL database dump complete
