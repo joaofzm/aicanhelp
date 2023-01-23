@@ -56,7 +56,7 @@ public class Duel implements Serializable, Comparable<Duel> {
 		this.date = date;
 	}
 
-		public Long getId() {
+	public Long getId() {
 		return id;
 	}
 
