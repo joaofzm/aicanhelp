@@ -28,6 +28,9 @@ import br.com.joaofzm15.aicanhelp.frontEnd.http.HttpController;
 
 public class AddDuelPanel extends Page implements ActionListener {
 	
+	
+	private CheckBox duelistsCupBox;
+	
 	private ComboBox deckComboBox;
 	
 	private CheckBox duelWBox;
@@ -54,7 +57,9 @@ public class AddDuelPanel extends Page implements ActionListener {
 
 
 		getPanel().add(new Label(0, 100, 1920, 200, "ADD DUEL", 210, 200, 255, 62, false));
-		
+	
+		getPanel().add(duelistsCupBox = new CheckBox(1475, 155, 300, 100, "Duelists Cup", 255, 255, 255, 200,50,50, 50));
+		duelistsCupBox.getJComponent().addActionListener(this);	
 
 		getPanel().add(deckComboBox = new ComboBox(355, 455, 300, 100, "x", 0, 0, 0,200, 255, 62, 28));
 		List<Deck> decksList = FrontEndInMemoryData.currentlyLoggedPlayer.getDecks();
