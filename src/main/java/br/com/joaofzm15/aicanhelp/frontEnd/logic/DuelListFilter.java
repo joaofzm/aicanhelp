@@ -52,7 +52,7 @@ public class DuelListFilter {
 		case 12:
 			return   Instant.parse ( "2022-12-01T01:00:00Z" );	
 		case 13:
-			return   Instant.parse ( "2023-01-18T00:00:00Z" );
+			return   Instant.parse ( "2023-01-01T00:00:00Z" );
 		case 14:
 			return   Instant.parse ( "2023-02-01T01:00:00Z" );
 		case 15:
@@ -104,6 +104,14 @@ public class DuelListFilter {
 			return   Instant.parse ( "2022-09-30T23:00:00Z" );
 		case 10:
 			return   Instant.parse ( "2022-10-31T23:00:00Z" );
+		case 11:
+			return   Instant.parse ( "2022-11-30T23:00:00Z" );
+		case 12:
+			return   Instant.parse ( "2022-12-31T23:00:00Z" );
+		case 13:
+			return   Instant.parse ( "2023-01-31T23:00:00Z" );
+		case 14:
+			return   Instant.parse ( "2023-02-28T23:00:00Z" );
 		default:
 			return null;
 		}
