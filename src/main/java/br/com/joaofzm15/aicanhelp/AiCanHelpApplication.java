@@ -32,7 +32,7 @@ public class AiCanHelpApplication {
 		LoginLoadingPanel loadingScreenPanel = new LoginLoadingPanel();
 		
 		//Create frame with loadingPanel as panel, set Frame as centered if res = 3
-		//Sets static reference to Frame
+		//Sets a static reference to Frame
 		Frame frame;
 		if (res == 3) {
 			frame = new Frame("AI Can Help", "Assets/windowIcon.png", loadingScreenPanel,true);
